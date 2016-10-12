@@ -20,7 +20,8 @@ class Subreddit(models.Model):
         return Post.objects.filter(subreddit=self).filter(creation_time__gte=date).count()
 
     def daily_add(self):
-        date = datetime.datetime.now() - datetime.timedelta(days=1)
+        date7 = datetime.datetime.now() - datetime.timedelta(days=7)
+        return Post.objects.filter(subreddit=self).filter(creation_time__gte=date7).count()/7
 
 
 class Post(models.Model):

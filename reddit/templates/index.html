@@ -15,8 +15,8 @@
       {% endfor %}
        <br>
       {% for time in time %}
-      {{ time.today_count }}
-
+        Posts within 24 hours: {{ time.today_count }}<br>
+        Posts within the last 7 days: {{ time.daily_add }} <br>
     {% endfor %}
   </body>
 </html>
