@@ -1,22 +1,35 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>Welcome!</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" media="screen" title="no title">
+    <style media="screen">
+      body {
+        background-color: lightgrey;
+      }
+
+    </style>
   </head>
   <body>
-    <h1>Welcome to Quasi-Reddit!!</h1>
-    Total Posts: <br>
-    <br>
-      {% for item in count %}
-      {{ item.creation }}
-      {{ item.name }}
-      {{ item.current_count }}<br>
-      {% endfor %}
-       <br>
-      {% for time in time %}
-        Posts within 24 hours: {{ time.today_count }}<br>
-        Posts within the last 7 days: {{ time.daily_add }} <br>
-    {% endfor %}
+    <div class="container">
+      <h1>Welcome to Quasi-Reddit!!</h1>
+      Total Subreddit Posts: <br>
+      <br>
+          {% for item in count %}
+            <!-- {{ item.creation }} -->
+            {{ item.name }}
+            {{ item.current_count }}<br>
+          {% endfor %}
+         <br>
+          {% for time in time %}
+          {{ time.name }}<br>
+            Posts within 24 hours:  -- {{ time.today_count }}<br>
+            Post average 7 days: {{ time.daily_add }} <br>
+            <br>
+          {% endfor %}
+    </div>
+
   </body>
 </html>
