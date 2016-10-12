@@ -8,6 +8,8 @@
     <style media="screen">
       body {
         background-color: lightgrey;
+        text-align: center;
+        color: darkblue;
       }
 
     </style>
@@ -30,19 +32,19 @@
             <br>
           {% endfor %}
           <br>
-
-          {% for day in post %}
+          Post in the last day?
+            <br>
+            {% for day in post %}
+              {{ day.title }} --
+              {{ day.is_recent }}
+            <br>
+            {% endfor %}
           <br>
-          {{ day.title }} --
-          {{ day.is_recent }}
-          <br>
-          {% endfor %}
-          <br>
-          Comments in the last 3 hours?! 
-          {% for post in post %}
-          <br>
-          {{ post }} -- {{ post.is_hot }}
-          {% endfor %}
+          Comments in the last 3 hours?!
+            {% for post in post %}
+            <br>
+              {{ post }} -- {{ post.is_hot }}
+            {% endfor %}
     </div>
 
   </body>
