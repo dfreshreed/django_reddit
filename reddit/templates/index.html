@@ -29,6 +29,14 @@
             Post average 7 days: {{ time.daily_add }} <br>
             <br>
           {% endfor %}
+          <br>
+
+          {% for day in last_day%}
+          <br>
+          {{ day.title }} --
+          {{ day.is_recent }}
+          <br>
+          {% endfor %}
     </div>
 
   </body>

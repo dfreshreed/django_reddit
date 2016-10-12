@@ -37,7 +37,10 @@ class Post(models.Model):
         return self.title
 
     def is_recent(self):
-        pass
+        date = datetime.datetime.now() - datetime.timedelta(days=1)
+        if Post.objects.filter(creation_time__gte=date):
+            return True
+
 
     def is_hot(self):
         pass

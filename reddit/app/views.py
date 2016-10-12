@@ -7,6 +7,7 @@ def index_view(request):
     #     print(item.current_count())
     context = {
         "count": Subreddit.objects.all(),
-        "time": Subreddit.objects.all()
+        "time": Subreddit.objects.all(),
+        "last_day": Post.objects.all(),
     }
     return render(request, "index.html", context)
