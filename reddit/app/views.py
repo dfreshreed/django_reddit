@@ -8,6 +8,6 @@ def index_view(request):
     context = {
         "count": Subreddit.objects.all(),
         "time": Subreddit.objects.all(),
-        "last_day": Post.objects.all(),
+        "post": Post.objects.all(),
     }
     return render(request, "index.html", context)

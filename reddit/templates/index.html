@@ -31,11 +31,17 @@
           {% endfor %}
           <br>
 
-          {% for day in last_day%}
+          {% for day in post %}
           <br>
           {{ day.title }} --
           {{ day.is_recent }}
           <br>
+          {% endfor %}
+          <br>
+          Comments in the last 3 hours?! 
+          {% for post in post %}
+          <br>
+          {{ post }} -- {{ post.is_hot }}
           {% endfor %}
     </div>
 

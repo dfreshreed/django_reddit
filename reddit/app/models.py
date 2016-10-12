@@ -40,10 +40,15 @@ class Post(models.Model):
         date = datetime.datetime.now() - datetime.timedelta(days=1)
         if Post.objects.filter(creation_time__gte=date):
             return True
-
+        else:
+            return False
 
     def is_hot(self):
-        pass
+        time = datetime.datetime.now() - datetime.timedelta(hours=3)
+        if Comment.objects.filter(post=self).filter(created_time__gt=time).count() > 3:
+            return True
+        else:
+            return False
 
 
 class Comment(models.Model):
