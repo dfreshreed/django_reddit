@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome!</title>
+  </head>
+  <body>
+    <h1>Welcome to Quasi-Reddit!!</h1>
+    Total Posts: <br>
+    <br>
+      {% for item in count %}
+      {{ item.creation }}
+      {{ item.name }}
+      {{ item.current_count }}<br>
+      {% endfor %}
+       <br>
+      {% for time in time %}
+      {{ time.today_count }}
+
+    {% endfor %}
+  </body>
+</html>
