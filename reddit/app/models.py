@@ -11,7 +11,7 @@ class Subreddit(models.Model):
     def __str__(self):
         return self.name
 
-    # @property
+    @property
     def current_count(self):
         return Post.objects.filter(subreddit=self).count()
 
@@ -22,6 +22,10 @@ class Subreddit(models.Model):
     def daily_add(self):
         date7 = datetime.datetime.now() - datetime.timedelta(days=7)
         return Post.objects.filter(subreddit=self).filter(creation_time__gte=date7).count()/7
+
+    @property
+    def top_20(self):
+        return Post.objects.filter(subreddit=self).order_by("-creation_time")[:21]
 
 
 class Post(models.Model):

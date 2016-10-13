@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from app.views import index_view
+from app.views import index_view, SubredditDetailView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', index_view, name="index_view")
+    url(r'^$', index_view, name='index_view'),
+    url(r'^subreddit/(?P<pk>\d+)/$', SubredditDetailView.as_view(), name='subreddit_detail_view')
 ]

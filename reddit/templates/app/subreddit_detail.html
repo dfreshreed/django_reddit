@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <h1>Subreddit Details</h1>
+  <h2>{{ object }}</h2>
+  {{object.description}}
+  <br>
+  Current Count : {{object.current_count}}
+  <br>
+  {% for post in object.top_20 %}
+  <div class="panel panel-default">
+    <div class="panel-body">
+      {{ post.title }}
+    </div>
+  </div>
+
+  {% endfor %}
+{% endblock %}
