@@ -11,7 +11,7 @@
   {% for post in object.top_20 %}
   <div class="panel panel-default">
     <div class="panel-body">
-      {{ post.title }}
+      <a href="{% url 'subpost_detail_view' post.id %}">{{ post.title }}</a>
     </div>
   </div>
 

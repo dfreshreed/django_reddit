@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <h1>Posts</h1>
+
+  {{ object.title }}
+  <br>
+  {{ object.description }}
+  <br>
+  Created by -- {{ object.user }}
+  <br>
+  Created within the last 24 hours? {{ object.is_recent}}
+  <br>
+  More than 3 comments in the last 3 hours? {{ object.is_hot }}
+  <br>
+{% endblock %}
