@@ -11,6 +11,7 @@ def index_view(request):
         "count": Subreddit.objects.all(),
         "time": Subreddit.objects.all(),
         "post": Post.objects.all(),
+        "test": Subreddit.objects.all().count()
     }
     return render(request, "index.html", context)
 
@@ -32,9 +33,9 @@ class SubpostDetailView(DetailView):
         context["count"] = Subreddit.objects.all()
         return context
 
-    def get_comment(self):
-        comment = Comment.objects.all()
-        return comment
+    # def get_comment(self):
+    #     comment = Comment.objects.all()
+    #     return comment
     # for item in Comment.objects.all():
     #     print(item.comment)
 

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
       <h1>Welcome to Quasi-Reddit!!</h1>
-      Total Subreddit Posts: <br>
+      Total Subreddit Posts: {{test}} <br>
       <br>
       {% for item in count %}
         <div class="panel panel-default">
@@ -15,7 +15,8 @@
         </div>
         {% endfor %}
          <br>
-          <!-- {% for time in time %}
+          <!--
+          {% for time in time %}
           {{ time.name }}<br>
             Posts within 24 hours:  -- {{ time.today_count }}<br>
             Post average 7 days: {{ time.daily_add }} <br>
@@ -34,6 +35,7 @@
             {% for post in post %}
             <br>
               {{ post }} -- {{ post.is_hot }}
-            {% endfor %} -->
-    <!-- </div> -->
+            {% endfor %}
+          -->
+
 {% endblock %}
