@@ -32,7 +32,6 @@ class SubpostDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context["count"] = Subreddit.objects.all()
         return context
-
     # def get_comment(self):
     #     comment = Comment.objects.all()
     #     return comment
@@ -49,3 +48,9 @@ class SubCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context["count"] = Subreddit.objects.all()
         return context
+
+
+class SubUpdateView(UpdateView):
+    model = Subreddit
+    success_url = "/"
+    fields = ('name', 'description')

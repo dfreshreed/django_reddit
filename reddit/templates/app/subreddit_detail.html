@@ -5,6 +5,7 @@
   <h1>Subreddit Details</h1>
   <h2>{{ object }}</h2>
   {{object.description}}
+  <a href="{% url 'sub_edit_view' object.id %}"> Edit Subreddit</a>
   <br>
   Current Count : {{object.current_count}}
   <br>
@@ -12,6 +13,7 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <a href="{% url 'subpost_detail_view' post.id %}">{{ post.title }}</a>
+
     </div>
   </div>
 
