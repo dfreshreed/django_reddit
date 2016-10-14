@@ -63,14 +63,35 @@ class SubUpdateView(UpdateView):
     success_url = "/"
     fields = ('name', 'description')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["count"] = Subreddit.objects.all()
+        return context
+
 
 class PostCreateView(CreateView):
     model = Post
     success_url = "/"
-    fields = ('title', 'description')
+    fields = ('title', 'description', 'url')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["count"] = Subreddit.objects.all()
+        return context
 
     def form_valid(self, form):
-        post_form = form.save(commit=False)
-        post_form.user = self.request.user
-        post_form.subreddit = Subreddit.objects.get(id=self.kwargs['pk'])
+        instance = form.save(commit=False)
+        instance.user = self.request.user
+        instance.subreddit = Subreddit.objects.get(id=self.kwargs['pk'])
         return super().form_valid(form)
+
+
+class PostUpdateView(UpdateView):
+    model = Post
+    success_url = "/"
+    fields = ('title', 'description', 'url')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["count"] = Subreddit.objects.all()
+        return context
