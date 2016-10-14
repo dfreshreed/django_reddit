@@ -2,6 +2,8 @@ from django.shortcuts import render
 from app.models import Subreddit, Post, Comment
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 
 def index_view(request):
@@ -14,6 +16,12 @@ def index_view(request):
         "test": Subreddit.objects.all().count()
     }
     return render(request, "index.html", context)
+
+
+class UserCreateView(CreateView):
+    model = User
+    form_class = UserCreationForm
+    success_url = "/"
 
 
 class SubredditDetailView(DetailView):
@@ -54,3 +62,15 @@ class SubUpdateView(UpdateView):
     model = Subreddit
     success_url = "/"
     fields = ('name', 'description')
+
+
+class PostCreateView(CreateView):
+    model = Post
+    success_url = "/"
+    fields = ('title', 'description')
+
+    def form_valid(self, form):
+        post_form = form.save(commit=False)
+        post_form.user = self.request.user
+        post_form.subreddit = Subreddit.objects.get(id=self.kwargs['pk'])
+        return super().form_valid(form)

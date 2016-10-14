@@ -18,6 +18,12 @@
       <div class="btn-group" role="group" aria-label="Left Align">
         <button type="button" name="button"><a href="{% url 'index_view' %}">Home</a></button>
         <button type="button" name="button"><a href="{% url 'sub_create_view' %}">Create Subreddit</a></button>
+          {% if not request.user.is_authenticated %}
+            <button type="button" name="button"><a href="{% url 'login' %}">Login!</a></button>
+          {% else %}
+            <button type="button" name="button"><a href="{% url 'logout' %}?next={% url 'index_view' %}">Logout</a></button>
+          {% endif %}
+          Hello, {{ request.user }}
         <br>
         {% for subreddit in count|slice:":10" %}
         <button type="button" name="button"><a href="{% url 'subreddit_detail_view' subreddit.id %}">{{subreddit.name}}</a></button>
