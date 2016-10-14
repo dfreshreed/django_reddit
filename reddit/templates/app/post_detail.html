@@ -3,15 +3,31 @@
 {% block content %}
 
   <h1>Posts</h1>
+  <div class="panel panel-default">
+    <div class="panel-body">
+    {{ object.title }}
+    <br>
+    {{ object.description }}
+    <br>
+    Created by -- {{ object.user }}
+    <br>
+    Created within the last 24 hours? {{ object.is_recent}}
+    <br>
+    More than 3 comments in the last 3 hours? {{ object.is_hot }}
+    <br>
+    </div>
+  </div>
+  <h3>Comments</h3>
+  {% for post in object.comment %}
+  <div class="container">
 
-  {{ object.title }}
-  <br>
-  {{ object.description }}
-  <br>
-  Created by -- {{ object.user }}
-  <br>
-  Created within the last 24 hours? {{ object.is_recent}}
-  <br>
-  More than 3 comments in the last 3 hours? {{ object.is_hot }}
-  <br>
+    </div>
+    <ul class="list_group"
+      <li class="list_group_item">{{ post.comment }} <span class="badge"></span></li>
+    <br>{{ post.created_time }}
+    </ul>
+  {% endfor %}
+  </div>
+
+
 {% endblock %}

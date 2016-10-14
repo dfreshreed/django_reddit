@@ -54,6 +54,13 @@ class Post(models.Model):
         else:
             return False
 
+    @property
+    def comment(self):
+        return Comment.objects.filter(post=self).order_by("-created_time")
+
+    @property
+    def count(self):
+        return Comment.objects.filter(post=self).count()    
 
 class Comment(models.Model):
     comment = models.TextField(max_length=255)
@@ -64,3 +71,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.post.title
+        return self.comment

@@ -30,3 +30,9 @@ class SubpostDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context["count"] = Subreddit.objects.all()
         return context
+
+    def get_comment(self):
+        comment = Comment.objects.all()
+        return comment
+    # for item in Comment.objects.all():
+    #     print(item.comment)
