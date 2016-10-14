@@ -63,6 +63,10 @@ class Post(models.Model):
         return Comment.objects.filter(post=self).count()
 
 
+    def all_comment(self):
+        return Comment.objects.filter(post=self)
+
+
 class Comment(models.Model):
     comment = models.TextField(max_length=255)
     user = models.ForeignKey(User)

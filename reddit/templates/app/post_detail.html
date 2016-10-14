@@ -17,14 +17,16 @@
     <br>
     </div>
   </div>
+
   <h3>Comments</h3>
   {% for post in object.comment %}
+
   <div class="container">
 
     </div>
     <ul class="list_group"
       <li class="list_group_item">{{ post.comment }} <span class="badge"></span></li>
-    <br>{{ post.created_time }}
+    <br><a href="{% url 'comment_update_view' post.id %}">Update Comment</a> {{ post.created_time }}
     </ul>
   {% endfor %}
   </div>

@@ -95,3 +95,31 @@ class PostUpdateView(UpdateView):
         context = super().get_context_data(**kwargs)
         context["count"] = Subreddit.objects.all()
         return context
+
+
+class CommentCreateView(CreateView):
+    model = Comment
+    success_url = "/"
+    fields = ('comment',)
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.user = self.request.user
+        instance.post = Post.objects.get(id=self.kwargs['pk'])
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["count"] = Subreddit.objects.all()
+        return context
+
+
+class CommentUpdateView(UpdateView):
+    model = Comment
+    success_url = "/"
+    fields = ('comment',)
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context["count"] = Subreddit.objects.all()
+    #     return context
