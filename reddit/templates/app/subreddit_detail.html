@@ -6,6 +6,7 @@
   <h2>{{ object }}</h2>
   {{object.description}}
   <a href="{% url 'sub_edit_view' object.id %}"> Edit Subreddit</a>
+  <a href="{% url 'post_create_view' object.id %}"> Create Post</a>
   <br>
   Current Count : {{object.current_count}}
   <br>

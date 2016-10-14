@@ -62,7 +62,6 @@ class Post(models.Model):
     def count(self):
         return Comment.objects.filter(post=self).count()
 
-
     def all_comment(self):
         return Comment.objects.filter(post=self)
 
