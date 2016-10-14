@@ -60,7 +60,8 @@ class Post(models.Model):
 
     @property
     def count(self):
-        return Comment.objects.filter(post=self).count()    
+        return Comment.objects.filter(post=self).count()
+
 
 class Comment(models.Model):
     comment = models.TextField(max_length=255)
