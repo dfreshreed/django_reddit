@@ -7,10 +7,14 @@
   {{object.description}}
   <a href="{% url 'sub_edit_view' object.id %}"> Edit Subreddit</a>
   <a href="{% url 'post_create_view' object.id %}"> Create Post</a>
+
+
+
   <br>
   Current Count : {{object.current_count}}
   <br>
   {% for post in object.top_20 %}
+  <a href="{% url 'post_update_view' post.id %}">Edit Post</a>
   <div class="panel panel-default">
     <div class="panel-body">
       <a href="{% url 'subpost_detail_view' post.id %}">{{ post.title }}</a>

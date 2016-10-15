@@ -119,7 +119,7 @@ class CommentUpdateView(UpdateView):
     success_url = "/"
     fields = ('comment',)
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context["count"] = Subreddit.objects.all()
-    #     return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["count"] = Subreddit.objects.all()
+        return context

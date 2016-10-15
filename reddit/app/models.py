@@ -27,6 +27,10 @@ class Subreddit(models.Model):
     def top_20(self):
         return Post.objects.filter(subreddit=self).order_by("-creation_time")[:21]
 
+    # # @property    
+    # def ticker(self):
+    #     return Post.objects.filter(subreddit=self).order_by("-creation_time")[:11]
+
 
 class Post(models.Model):
     title = models.CharField(max_length=150)
