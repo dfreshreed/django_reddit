@@ -4,15 +4,14 @@
       Total Subreddit Posts: {{test}} <br>
       <br>
       {% for item in count %}
-        <div class="panel panel-default">
-          <div class="panel-body">
-
+        <ul class="list-group">
+          <li class="list-group-item">
+            <span class="badge"> {{ item.current_count }} </span>
             <a href="{% url 'subreddit_detail_view' item.id %}">r/{{ item.name }}</a>
               -- {{ item.description }}<br>
-              Posts: {{ item.current_count }}<br>
-
-          </div>
-        </div>
+          </li>
+        </ul>
+          
         {% endfor %}
          <br>
           <!--

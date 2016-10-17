@@ -15,12 +15,12 @@
   <br>
   {% for post in object.top_20 %}
   <a href="{% url 'post_update_view' post.id %}">Edit Post</a>
-  <div class="panel panel-default">
-    <div class="panel-body">
+  <ul class="list-group">
+    <li class="list-group-item">
+      <span class="badge"> {{ post.count }} </span>
       <a href="{% url 'subpost_detail_view' post.id %}">{{ post.title }}</a>
-
-    </div>
-  </div>
+    </li>
+  </ul>
 
   {% endfor %}
 {% endblock %}

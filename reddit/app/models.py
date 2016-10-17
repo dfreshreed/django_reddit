@@ -27,7 +27,7 @@ class Subreddit(models.Model):
     def top_20(self):
         return Post.objects.filter(subreddit=self).order_by("-creation_time")[:21]
 
-    # # @property    
+    # # @property
     # def ticker(self):
     #     return Post.objects.filter(subreddit=self).order_by("-creation_time")[:11]
 

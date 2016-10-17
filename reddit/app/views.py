@@ -4,6 +4,7 @@ from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse
 
 
 def index_view(request):
@@ -67,6 +68,9 @@ class SubUpdateView(UpdateView):
         context = super().get_context_data(**kwargs)
         context["count"] = Subreddit.objects.all()
         return context
+
+    # def lazy_url(self, **kwargs):
+    #     return reverse('subreddit_detail_view', args=self.kwargs['pk'])
 
 
 class PostCreateView(CreateView):
