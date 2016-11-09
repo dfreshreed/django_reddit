@@ -21,7 +21,7 @@ class Profile(models.Model):
         return self.user.username
 
     def created_by(self):
-        return Subreddit.objects.filter(profile=self.request.user)
+        return Post.objects.filter(profile=self.user)
 
 
 class Subreddit(models.Model):

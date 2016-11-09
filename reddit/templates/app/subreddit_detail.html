@@ -5,17 +5,19 @@
   <h1>Subreddit Details</h1>
   <h2>{{ object }}</h2>
   {{object.description}}
-  
+  {% if request.user == subreddit.created_by %}
   <a href="{% url 'sub_edit_view' object.id %}"> Edit Subreddit</a>
   <a href="{% url 'post_create_view' object.id %}"> Create Post</a>
-
+  {% endif %}
 
 
   <br>
   Current Count : {{object.current_count}}
   <br>
   {% for post in object.top_20 %}
+    {% if request.user == post.user %}
   <a href="{% url 'post_update_view' post.id %}">Edit Post</a>
+    {% endif %}
   <ul class="list-group">
     <li class="list-group-item">
       <span class="badge"> {{ post.count }} </span>
