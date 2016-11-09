@@ -1,12 +1,34 @@
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
+from django.dispatch import receiver
+
+
+@receiver
+def create_user_profile(**kwargs):
+    created = kwargs.get('created')
+    instance = kwargs.get('instance')
+    if created:
+        Profile.objects.create(user=instance)
+
+
+class Profile(models.Model):
+    user = models.OneToOneField('auth.User')
+    username = models.CharField(max_length=50, null=True, blank=True)
+    email = models.CharField(max_length=150, null=True, blank=True)
+
+    def __str__(self):
+        return self.user.username
+
+    def created_by(self):
+        return Subreddit.objects.filter(profile=self.request.user)
 
 
 class Subreddit(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
     creation = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey('auth.User')
 
     def __str__(self):
         return self.name
@@ -39,7 +61,7 @@ class Post(models.Model):
     creation_time = models.DateTimeField(auto_now_add=True)
     modification_time = models.DateTimeField(auto_now=True)
     subreddit = models.ForeignKey(Subreddit)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey('auth.User')
 
     def __str__(self):
         return self.title
@@ -72,7 +94,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     comment = models.TextField(max_length=255)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey('auth.User')
     post = models.ForeignKey(Post)
     created_time = models.DateTimeField(auto_now_add=True)
     modified_time = models.DateTimeField(auto_now=True)
