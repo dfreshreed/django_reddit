@@ -4,19 +4,26 @@ from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 
-def index_view(request):
+class IndexListView(ListView):
+    model = Subreddit
+    success_url = '/'
+
+    def get_context_data(self):
+        context = super().get_context_data()
+        context["count"] = Subreddit.objects.all()
+        return context
     # for item in Subreddit.objects.all():
     #     print(item.current_count())
-    context = {
-        "count": Subreddit.objects.all(),
-        "time": Subreddit.objects.all(),
-        "post": Post.objects.all(),
-        "test": Subreddit.objects.all().count()
-    }
-    return render(request, "index.html", context)
+    # context = {
+    #     "count": Subreddit.objects.all(),
+    #     "time": Subreddit.objects.all(),
+    #     "post": Post.objects.all(),
+    #     "test": Subreddit.objects.all().count()
+    # }
+    # return render(request, "index.html", context)
 
 
 class UserCreateView(CreateView):
@@ -32,6 +39,9 @@ class ProfileDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context["profile"] = Profile.objects.filter(id=self.kwargs['pk'])
         return context
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('profile_detail_view', args=[int(self.kwargs['pk'])])
 
 
 class SubredditDetailView(DetailView):
