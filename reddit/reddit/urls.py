@@ -36,5 +36,5 @@ urlpatterns = [
     url(r'^subreddit/(?P<pk>\d+)/create/$', PostCreateView.as_view(), name='post_create_view'),
     url(r'^subpost/(?P<pk>\d+)/update/$', PostUpdateView.as_view(), name='post_update_view'),
     url(r'^subpost/(?P<pk>\d+)/create/$', CommentCreateView.as_view(), name='comment_create_view'),
-    url(r'^(?P<pk>\d+)/comupdate/$', CommentUpdateView.as_view(), name='comment_update_view'),
+    url(r'^comment/(?P<pk>\d+)/$', CommentUpdateView.as_view(), name='comment_update_view'),
 ]

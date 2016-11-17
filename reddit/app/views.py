@@ -15,15 +15,6 @@ class IndexListView(ListView):
         context = super().get_context_data()
         context["count"] = Subreddit.objects.all()
         return context
-    # for item in Subreddit.objects.all():
-    #     print(item.current_count())
-    # context = {
-    #     "count": Subreddit.objects.all(),
-    #     "time": Subreddit.objects.all(),
-    #     "post": Post.objects.all(),
-    #     "test": Subreddit.objects.all().count()
-    # }
-    # return render(request, "index.html", context)
 
 
 class UserCreateView(CreateView):
@@ -122,7 +113,7 @@ class PostUpdateView(UpdateView):
 
 class CommentCreateView(CreateView):
     model = Comment
-    success_url = "/"
+    # success_url = "/"
     fields = ('comment',)
 
     def form_valid(self, form):
@@ -136,13 +127,20 @@ class CommentCreateView(CreateView):
         context["count"] = Subreddit.objects.all()
         return context
 
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('subpost_detail_view', args=[int(self.kwargs['pk'])])
+
 
 class CommentUpdateView(UpdateView):
     model = Comment
-    success_url = "/"
+    # success_url = "/"
     fields = ('comment',)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["count"] = Subreddit.objects.all()
         return context
+
+    def get_success_url(self, **kwargs):
+        post_id = Comment.objects.get(id=self.kwargs['pk']).post.id
+        return reverse('subpost_detail_view', args=[post_id])

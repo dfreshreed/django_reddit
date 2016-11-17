@@ -26,7 +26,9 @@
     </div>
     <ul class="list_group"
       <li class="list_group_item">{{ post.comment }} <span class="badge"></span></li>
+      {% if request.user == post.user %}
     <br>{{ post.created_time }} by {{ post.user }}<a href="{% url 'comment_update_view' post.id %}"> Update Comment</a>
+      {% endif %}
     </ul>
   {% endfor %}
   </div>
