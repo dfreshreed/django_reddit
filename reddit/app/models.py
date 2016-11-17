@@ -20,9 +20,6 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
-    def created_by(self):
-        return Post.objects.filter(profile=self.user)
-
 
 class Subreddit(models.Model):
     name = models.CharField(max_length=50)
