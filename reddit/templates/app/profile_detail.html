@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% if request.user.is_authenticated %}
+  <div class="container">
+    <h1>Profile</h1>
+    User ID: {{object.id}} <br>
+    Username: {{object.username}} <br>
+    Email: {{object.email}}
+  </div>
+
+  {% endif %}
+{% endblock %}

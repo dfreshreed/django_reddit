@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from app.models import Subreddit, Post, Comment
+from app.models import Subreddit, Post, Comment, Profile
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.models import User
@@ -23,6 +23,15 @@ class UserCreateView(CreateView):
     model = User
     form_class = UserCreationForm
     success_url = "/"
+
+
+class ProfileDetailView(DetailView):
+    model = Profile
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["profile"] = Profile.objects.filter(id=self.kwargs['pk'])
+        return context
 
 
 class SubredditDetailView(DetailView):
